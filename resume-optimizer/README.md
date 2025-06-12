@@ -10,6 +10,8 @@ A modern, scalable web application that helps users optimize their resumes for A
 - **AI-Powered Suggestions**: Get tailored recommendations for resume improvement
 - **Spelling & Grammar Check**: Integrated LanguageTool for writing improvements
 - **Premium Features**: Advanced analytics, unlimited scans, and AI-generated content
+- **Mobile-First Design**: Responsive UI that works on all devices
+- **Progressive Web App**: Installable on mobile devices and works offline
 
 ## Tech Stack
 
@@ -18,6 +20,8 @@ A modern, scalable web application that helps users optimize their resumes for A
 - Tailwind CSS for styling
 - Chart.js for data visualization
 - Material-UI React components
+- Capacitor for mobile apps
+- Progressive Web App (PWA) support
 
 ### Backend
 - Node.js with Strapi (Headless CMS)
@@ -71,23 +75,160 @@ A modern, scalable web application that helps users optimize their resumes for A
 
 ```
 resume-optimizer/
-├── backend/                    # Node.js backend with Strapi and AWS
-│   └── strapi/                 # Strapi CMS
-│       ├── config/             # Configuration files
-│       ├── api/                # API endpoints
-│       ├── plugins/            # Custom plugins
-│       └── database/           # Database configurations
-├── frontend/                   # Vue.js frontend with Nuxt.js
-│   └── nuxt/                   # Nuxt.js app
-│       ├── components/         # Vue components
-│       ├── pages/              # Application pages
-│       ├── assets/             # Static assets
-│       ├── plugins/            # Nuxt plugins
-│       └── layouts/            # Layout components
-├── aws/                        # AWS configurations
-├── docker/                     # Docker configurations
-└── scripts/                    # Utility scripts
+├── backend/               # Backend API and services
+│   ├── config/           # Configuration files
+│   ├── controllers/      # Route controllers
+│   ├── models/           # Database models
+│   ├── routes/           # API routes
+│   ├── services/         # Business logic
+│   ├── utils/            # Utility functions
+│   ├── .env.example      # Example environment variables
+│   └── server.js         # Entry point
+├── frontend/             # Frontend application
+│   ├── assets/           # Static assets
+│   ├── components/       # Reusable Vue components
+│   │   └── ui/           # UI component library
+│   ├── layouts/          # Layout components
+│   ├── middleware/       # Nuxt middleware
+│   ├── pages/            # Application views
+│   ├── plugins/          # Vue plugins
+│   │   ├── ui.js         # UI components plugin
+│   │   └── capacitor.js  # Capacitor integration
+│   ├── static/           # Static files
+│   ├── store/            # Vuex store
+│   ├── utils/            # Utility functions
+│   ├── capacitor.config.json  # Capacitor config
+│   └── nuxt.config.js    # Nuxt configuration
+└── README.md             # Project documentation
 ```
+
+## UI Components
+
+### Button Component
+
+A highly customizable button component with multiple variants and states.
+
+```vue
+<ui-button 
+  :loading="isLoading"
+  variant="primary | secondary | outline | danger | text"
+  size="sm | md | lg"
+  :disabled="false"
+  :fullWidth="false"
+  @click="handleClick"
+>
+  Button Text
+</ui-button>
+```
+
+### Button Group
+
+Group buttons together with consistent spacing and alignment.
+
+```vue
+<ui-button-group :vertical="false">
+  <ui-button>First</ui-button>
+  <ui-button variant="outline">Middle</ui-button>
+  <ui-button variant="danger">Last</ui-button>
+</ui-button-group>
+```
+
+## Mobile Setup with Capacitor
+
+### Prerequisites
+
+- Node.js 14+ and npm/yarn
+- Android Studio (for Android development)
+- Xcode 12+ (for iOS development, macOS only)
+
+### Setup
+
+1. Install Capacitor CLI and core packages:
+
+```bash
+npm install --save @capacitor/core @capacitor/cli @capacitor/ios @capacitor/android
+```
+
+2. Initialize Capacitor (run from frontend directory):
+
+```bash
+npx cap init "Resume Optimizer" "com.resumeoptimizer.app" --web-dir="dist"
+```
+
+3. Add platforms:
+
+```bash
+# For Android
+npx cap add android
+
+# For iOS (macOS only)
+npx cap add ios
+```
+
+4. Build the app and sync with native projects:
+
+```bash
+# Build the web app
+npm run generate
+
+# Sync with native projects
+npx cap sync
+```
+
+### Running the App
+
+#### Web
+```bash
+npm run dev
+```
+
+#### Android
+```bash
+# Open in Android Studio
+npx cap open android
+
+# Or run directly on connected device
+npx cap run android
+```
+
+#### iOS (macOS only)
+```bash
+# Open in Xcode
+npx cap open ios
+
+# Or run on simulator
+npx cap run ios
+```
+
+### Testing the App
+
+1. A test page is available at `/test` to verify all UI components and mobile features.
+2. The test page shows device information and allows testing of:
+   - Button variants and states
+   - Button groups (horizontal and vertical)
+   - Toast notifications
+   - Network status
+   - PWA installation
+
+## Development
+
+### Adding New UI Components
+
+1. Create a new Vue component in `frontend/components/ui/`
+2. Register it in `frontend/plugins/ui.js`
+3. Use the component in your templates with the `ui-` prefix
+
+### Theming
+
+Customize the design system by editing:
+- `tailwind.config.js` for colors, spacing, and typography
+- `assets/css/main.css` for global styles
+
+### Mobile-Specific Features
+
+- Use `@/utils/mobile.js` for device detection
+- Access Capacitor plugins via `this.$capacitor` in components
+- Check `plugins/capacitor.js` for native functionality
 
 ## Deployment
 

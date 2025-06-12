@@ -1,0 +1,26 @@
+{
+  "appId": "com.resumeoptimizer.app",
+  "appName": "Resume Optimizer AI",
+  "bundledWebRuntime": false,
+  "webDir": ".output/public",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 3000,
+      "launchAutoHide": true,
+      "backgroundColor": "#2196F3",
+      "androidSplashResourceName": "splash",
+      "androidScaleType": "CENTER_CROP",
+      "showSpinner": true,
+      "splashFullScreen": true,
+      "splashImmersive": true
+    },
+    "Preferences": {},
+    "StatusBar": {
+      "style": "DARK"
+    }
+  },
+  "server": {
+    "androidScheme": "https",
+    "cleartext": true
+  }
+}
