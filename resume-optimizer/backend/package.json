@@ -1,0 +1,42 @@
+{
+  "name": "resume-optimizer-backend",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Backend for Resume Optimizer AI",
+  "scripts": {
+    "develop": "strapi develop",
+    "start": "strapi start",
+    "build": "strapi build",
+    "strapi": "strapi",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@aws-sdk/client-cognito-identity-provider": "^3.0.0",
+    "@aws-sdk/client-s3": "^3.0.0",
+    "@aws-sdk/s3-request-presigner": "^3.0.0",
+    "@strapi/plugin-users-permissions": "^4.0.0",
+    "@strapi/strapi": "^4.0.0",
+    "axios": "^1.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "helmet": "^6.0.0",
+    "jsonwebtoken": "^9.0.0",
+    "language-tool-node": "^1.0.1",
+    "lodash": "^4.17.21",
+    "mammoth": "^1.6.0",
+    "mime-types": "^2.1.35",
+    "mongodb": "^5.0.0",
+    "morgan": "^1.10.0",
+    "pdf-parse": "^1.1.1",
+    "pg": "^8.8.0",
+    "sharp": "^0.32.0",
+    "stripe": "^11.0.0",
+    "tensorflow": "^4.10.0",
+    "tesseract.js": "^4.1.1"
+  },
+  "engines": {
+    "node": ">=14.19.1 <=18.x.x",
+    "npm": ">=6.0.0"
+  },
+  "license": "MIT"
+}
